@@ -1,0 +1,3 @@
+R = 2 ohm
+D = 0.6, I = 6A, while In V = 20V
+System Power 50W
