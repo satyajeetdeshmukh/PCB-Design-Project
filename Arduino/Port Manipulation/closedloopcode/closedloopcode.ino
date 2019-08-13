@@ -1,7 +1,6 @@
 int PWMPin = 13;
 float dutyCycle = 0.5;
 
-
 void setup() {
   pinMode(PWMPin, OUTPUT);
 
@@ -14,12 +13,12 @@ void setup() {
 
 }
 
-void someFunc(){
+void Calculate(){
   delay(1000);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   analogWrite(PWMPin, 255*dutyCycle);
-  someFunc();
+  Calculate();
 }

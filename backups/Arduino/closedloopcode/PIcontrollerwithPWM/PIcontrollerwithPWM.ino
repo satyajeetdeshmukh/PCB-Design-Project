@@ -36,14 +36,14 @@ void setup() {
 void Compute()
 {
   unsigned long now = micros();
-  int timeChange = (now - lastTime);
+  unsigned long timeChange = (now - lastTime);
 
   Input = analogRead(VoltageInputPin); // Input is read as (1023-0) for (5,0) V
-  Input = (float)Input*0.054; // Input needs to scaled to get real value for calculating error
+  //Input = (float)Input*0.054; // Input needs to scaled to get real value for calculating error
   
   float error = Setpoint - Input; // Calculate error term
 
-  ITerm += (float) (ki * error * timeChange / 1000000.00); // Calculate and limit Integration Term // Verify if this works properly
+  ITerm += (ki * error) * (timeChange / 1000000); // Calculate and limit Integration Term
   if (ITerm > outMax) ITerm = outMax;
   else if (ITerm < outMin) ITerm = outMin;
 
@@ -62,8 +62,7 @@ void Compute()
 }
 
 void loop() {
-
-  // to check how how much time is being taken per cycle!
+  
   count++;
   if (count % 10000 == 0) {
     Serial.println(count);
