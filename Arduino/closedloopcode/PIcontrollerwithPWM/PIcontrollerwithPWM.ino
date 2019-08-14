@@ -1,6 +1,6 @@
 // Global declarations and default values
 unsigned long count = 0;
-int VoltageInputPin = A0;
+int VoltageInputPin = A7;
 int PWMPin = 13;
 unsigned long lastTime = 0;
 float Input = 0, Output = 0, Setpoint = 0;
@@ -11,16 +11,16 @@ float outMin = 0, outMax = 1;
 
 void setup() {
   // User set parameters
-  Setpoint = 5; // Reference Voltage
-  VoltageInputPin = A0; // Pin being used to take voltage input
+  Setpoint = 12; // Reference Voltage i.e. Volatge to be achieved
+  VoltageInputPin = A7; // Pin being used to take voltage input
   PWMPin = 13; // Pin being used for PWM
   Output  = 0.2; // Starting duty cycle
-  kp = 0.01; // Set kp and ki
+  kp = 0.09; // Set kp and ki
   ki = 0.01;
 
   // Limiting the Output duty cycle
   outMin = 0.2;
-  outMax = 0.7;
+  outMax = 0.6;
 
   // Setting clock speed of pins 13 and 4 to 7.8kHz on Atmega 2560
   pinMode(PWMPin, OUTPUT);
@@ -39,6 +39,7 @@ void Compute()
   int timeChange = (now - lastTime);
 
   Input = analogRead(VoltageInputPin); // Input is read as (1023-0) for (5,0) V
+  //Serial.println(Input);
   Input = (float)Input*0.054; // Input needs to scaled to get real value for calculating error
   
   float error = Setpoint - Input; // Calculate error term
@@ -64,11 +65,11 @@ void Compute()
 void loop() {
 
   // to check how how much time is being taken per cycle!
-  count++;
-  if (count % 10000 == 0) {
-    Serial.println(count);
-  }
+  //count++;
+  //if (count % 10000 == 0) {
+    //Serial.println(count);
+  //}
 
   Compute(); //computes new duty cycle every sampling time
-  analogWrite(PWMPin, 255 * (1-Output)); //keeps running the pwm signal, 1-output as the octocoupler inverts the signal!
+  analogWrite(PWMPin, 255 * (Output)); //keeps running the pwm signal, 1-output as the octocoupler inverts the signal!
 }
