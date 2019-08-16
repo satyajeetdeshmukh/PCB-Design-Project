@@ -3,14 +3,14 @@
  <FRAME activewindow="1">
   <PLACEMENT>2c00000002000000030000000083ffff0083ffffffffffffffffffff8300000009000000d4040000d0020000</PLACEMENT>
   <WINDOW type="default" module="ISIS"/>
-  <WINDOW type="default" module="ARES"/>
   <WINDOW type="VIEW3D" module="VIEW3D">
    <camera>
-    <position x="-1522419" y="-575152" z="10779836"/>
-    <focus x="-617400" y="1887861" z="-1119356"/>
-    <up x="40858" y="977803" z="205504"/>
+    <position x="-2510102" y="-801027" z="10312469"/>
+    <focus x="-1081135" y="2067978" z="189497"/>
+    <up x="25165" y="960866" z="275876"/>
    </camera>
   </WINDOW>
+  <WINDOW type="default" module="ARES"/>
  </FRAME>
  <MODULE name="VSMDEBUG">
   <PWI/>
